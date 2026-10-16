@@ -14,5 +14,7 @@
     "figma",
     "design-qa",
     "agents"
-  ]
+  ],
+  "license": "MIT",
+  "repository": "https://github.com/Basmatiii/ai-design-team"
 }

@@ -24,6 +24,7 @@ market = json.loads((root / '.claude-plugin/marketplace.json').read_text())
 manifest = json.loads((plugin / '.claude-plugin/plugin.json').read_text())
 check(market['plugins'][0]['name'] == manifest['name'], 'marketplace and plugin names differ')
 check(market['plugins'][0].get('version') == manifest.get('version'), 'marketplace and plugin versions differ')
+check(manifest.get('license') == 'MIT' and market['plugins'][0].get('license') == 'MIT', 'license must be MIT in both manifests')
 check((root / market['plugins'][0]['source']).is_dir(), 'marketplace source path missing')
 
 # agents: read-only tools only, no connectors, orchestrator alone may delegate
@@ -48,7 +49,7 @@ check(names == sorted(p.name for p in re_.glob('*.md')), 'examples/ and plugins/
 for n in names: check((pe / n).read_text() == (re_ / n).read_text(), f'examples/{n} differs from the plugin copy')
 
 # required docs
-for f in ['README.md', 'docs/licensing.md', 'docs/permissions.md', 'docs/workflow-contract.md', 'docs/validation.md',
+for f in ['README.md', 'LICENSE', 'plugins/design-team/LICENSE', 'docs/licensing.md', 'docs/permissions.md', 'docs/workflow-contract.md', 'docs/validation.md',
           'docs/setup-live-integrations.md', 'settings/read-only-guard.json', 'tests/mock-mcp/server.mjs']:
     check((root / f).is_file(), f'missing {f}')
 json.loads((root / 'settings/read-only-guard.json').read_text())

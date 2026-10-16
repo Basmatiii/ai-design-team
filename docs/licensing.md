@@ -1,11 +1,13 @@
-# Choose a publication license before releasing
+# License
 
-This package has **no public redistribution license selected yet**. All rights reserved by default. The original materials here were generated for your project; before placing the toolkit on a public website or repository, decide the distribution terms.
+The AI Design Team is released under the **MIT License** (`LICENSE` at the repository root, also bundled inside
+`plugins/design-team/`). You may use, copy, modify, merge, publish, distribute, sublicense and sell copies, provided
+the copyright and permission notice stay with them. The software is provided as is, without warranty.
 
-## Common approaches
+Copyright (c) 2026 Basma Gh.
 
-- **Free/open-source:** Add an MIT license if you want others to reuse, modify, resell and redistribute with attribution/notice. This is permissive; it does not reserve exclusivity.
-- **Free to download, no redistribution:** Publish clear proprietary terms permitting defined personal/team use without redistribution or resale. Have a qualified professional review terms.
-- **Commercial license:** Sell access under custom terms, optionally offering a limited trial or demo. Define number of users, updates, support, redistribution restrictions and refund policy. Have terms reviewed before launch.
+Everything in this repository is original and fictional: no client, employer or workplace material, tickets, links
+or credentials. Keep it that way in contributions and forks.
 
-Update the product card's price, license file, plugin manifest's `license` field, website footer and README consistently after making the choice. Don't publish the toolkit until any employer intellectual property has been removed and publication rights checked.
+Claude, Claude Code, Figma and Linear are trademarks of their respective owners. This is an independent community
+project, not endorsed by Anthropic, Figma or Linear.

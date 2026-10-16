@@ -3,7 +3,14 @@
 Four agents: `design-orchestrator`, `ux-analyst`, `figma-designer`, `design-qa`.
 Three person-only skills: `design-ticket`, `review-spec`, `apply-to-figma`.
 
-## Quick test
+## Install
+
+```bash
+claude plugin marketplace add Basmatiii/ai-design-team
+claude plugin install design-team@basma-ai-tools
+```
+
+## Quick test from a clone
 
 ```bash
 claude plugin validate ./plugins/design-team
@@ -27,3 +34,5 @@ extracted folder so `examples/` resolves, or pass a full path, or paste the tick
   rules in `settings/read-only-guard.json` (release folder) or `docs/permissions.md`.
 - `apply-to-figma` never runs as part of the workflow. A person starts it with an exact frame and an approved spec.
 - Plugin agents ignore `hooks`, `mcpServers` and `permissionMode`, so this plugin does not use them.
+
+MIT License. Copyright (c) 2026 Basma Gh.

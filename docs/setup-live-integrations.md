@@ -70,14 +70,17 @@ claude plugin install design-team@basma-ai-tools
 claude plugin list
 ```
 
-After the repository is public, people will run `claude plugin marketplace add <owner>/<repo>` followed by
-`claude plugin install design-team@basma-ai-tools`.
+From GitHub:
+
+```bash
+claude plugin marketplace add Basmatiii/ai-design-team
+claude plugin install design-team@basma-ai-tools
+```
 
 ## Before a public release
 
 1. Run the validator, both plugin validations and the headless test; fix every warning.
 2. Run the mock-connector test and keep the guard result.
 3. Test against a real, non-sensitive Linear workspace and a test Figma file.
-4. Choose a license (`docs/licensing.md`) and update the manifests and README.
+4. Keep the MIT notice with every copy (`LICENSE`).
 5. Confirm rights to everything published. No client artifacts, tickets, links or credentials.
-6. Replace preview copy on the portfolio with the real repository URL.

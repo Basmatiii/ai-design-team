@@ -1,4 +1,4 @@
-# The AI Design Team (v0.2.0, preview)
+# The AI Design Team (v0.2.0)
 
 **Four specialized agents. One smarter design workflow.**
 
@@ -25,9 +25,28 @@ ticket > Orchestrator > UX Analyst > Figma Designer > Design QA > human review
 
 All three skills can only be started by a person (`disable-model-invocation: true`).
 
-## Try it
+## Install
 
 Requires Claude Code with plugin support. No accounts are needed for the fictional sample.
+
+```bash
+claude plugin marketplace add Basmatiii/ai-design-team
+claude plugin install design-team@basma-ai-tools
+```
+
+Or inside Claude Code: `/plugin marketplace add Basmatiii/ai-design-team`, then `/plugin install design-team@basma-ai-tools`.
+
+## Try it on the fictional ticket
+
+```bash
+git clone https://github.com/Basmatiii/ai-design-team
+cd ai-design-team
+claude
+```
+
+Then run `/design-team:design-ticket examples/sample-ticket.md`.
+
+## Work on the plugin locally
 
 ```bash
 python3 scripts/validate.py                  # static checks (needs PyYAML)
@@ -72,5 +91,5 @@ Tested with Claude Code 2.1.301 on fictional data, including delegation, parent-
 inspection and the read-only guard against a mock connector. Not yet tested against real Linear or Figma
 workspaces, and no time savings are claimed. See `docs/validation.md`.
 
-Independent project by Basma Gh, not endorsed by Anthropic, Figma or Linear. All rights reserved until a
-publication license is chosen (`docs/licensing.md`).
+Independent project by Basma Gh, not endorsed by Anthropic, Figma or Linear. Released under the MIT License
+(`LICENSE`).

@@ -10,7 +10,10 @@
       "name": "design-team",
       "source": "./plugins/design-team",
       "description": "Four review-first agents for UX analysis, Figma-ready design planning and independent design QA",
-      "version": "0.2.0"
+      "version": "0.2.0",
+      "license": "MIT",
+      "homepage": "https://www.basma.design/ai-tools/ai-design-team",
+      "repository": "https://github.com/Basmatiii/ai-design-team"
     }
   ]
 }
