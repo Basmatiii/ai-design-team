@@ -1,0 +1,11 @@
+.env
+.env.*
+!.env.example
+.DS_Store
+node_modules/
+.claude/settings.local.json
+*.log
+
+# private names that must never ship (one regex per line); read by scripts/validate.py
+.release-denylist
+tests/out/

@@ -1,0 +1,6 @@
+{
+  "mcpServers": {
+    "linear": { "command": "node", "args": ["tests/mock-mcp/server.mjs", "linear", "tests/out/calls.log"] },
+    "figma":  { "command": "node", "args": ["tests/mock-mcp/server.mjs", "figma",  "tests/out/calls.log"] }
+  }
+}

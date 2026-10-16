@@ -1,0 +1,18 @@
+{
+  "name": "design-team",
+  "version": "0.2.0",
+  "description": "Review-first product design workflow: an orchestrator, a UX analyst, a Figma designer and an independent design QA agent, ending in a human decision",
+  "author": {
+    "name": "Basma Gh",
+    "email": "hey@basma.design",
+    "url": "https://www.basma.design"
+  },
+  "homepage": "https://www.basma.design/ai-tools/ai-design-team",
+  "keywords": [
+    "product-design",
+    "ux",
+    "figma",
+    "design-qa",
+    "agents"
+  ]
+}

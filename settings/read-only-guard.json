@@ -1,0 +1,21 @@
+{
+  "$comment": "The AI Design Team read-only guard. Copy the permissions block into your project's .claude/settings.json. Deny rules are enforced by Claude Code, not by prompts. Patterns match Linear and Figma servers whatever you named them (for example linear, Linear, claude_ai_Linear). Check your real tool names with /mcp and add any write tool these patterns miss.",
+  "permissions": {
+    "deny": [
+      "mcp__*inear*__create_*",
+      "mcp__*inear*__update_*",
+      "mcp__*inear*__save_*",
+      "mcp__*inear*__delete_*",
+      "mcp__*inear*__archive_*",
+      "mcp__*inear*__remove_*",
+      "mcp__*inear*__assign_*",
+      "mcp__*igma*__use_figma",
+      "mcp__*igma*__create_*",
+      "mcp__*igma*__upload_*",
+      "mcp__*igma*__generate_*",
+      "mcp__*igma*__send_*",
+      "mcp__*igma*__add_*",
+      "mcp__*igma*__update_*"
+    ]
+  }
+}

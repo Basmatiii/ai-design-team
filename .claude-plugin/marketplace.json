@@ -1,0 +1,16 @@
+{
+  "name": "basma-ai-tools",
+  "description": "Independent, review-first product design agents and tools by Basma Gh",
+  "owner": {
+    "name": "Basma Gh",
+    "email": "hey@basma.design"
+  },
+  "plugins": [
+    {
+      "name": "design-team",
+      "source": "./plugins/design-team",
+      "description": "Four review-first agents for UX analysis, Figma-ready design planning and independent design QA",
+      "version": "0.2.0"
+    }
+  ]
+}
