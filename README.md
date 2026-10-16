@@ -87,9 +87,9 @@ claude --plugin-dir ./plugins/design-team --agent design-team:design-orchestrato
 
 ## Status
 
-Tested with Claude Code 2.1.301 on fictional data, including delegation, parent-ticket investigation, library
-inspection and the read-only guard against a mock connector. Not yet tested against real Linear or Figma
-workspaces, and no time savings are claimed. See `docs/validation.md`.
+Tested by the author with live Linear and Figma connections, and with recorded runs in Claude Code 2.1.301 on
+fictional data: delegation, parent-ticket investigation, library inspection, prompt injection and the read-only guard.
+Time saved is not measured, so no number is claimed. See `docs/validation.md`.
 
 Independent project by Basma Gh, not endorsed by Anthropic, Figma or Linear. Released under the MIT License
 (`LICENSE`).

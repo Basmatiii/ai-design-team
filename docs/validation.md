@@ -32,12 +32,16 @@ Runs 1 to 6 used the pre-release agent text. One change came out of them: in run
 condensed summary of the spec rather than the full text. The orchestrator now has an explicit rule that handoffs are
 verbatim and a specification is never summarized before QA. Run 7 shows the rule helps but is not a guarantee, which is why QA also reports anything it did not see in full (added to `design-qa` after run 7, not re-run).
 
-## Not verified
+## Live Linear and Figma
 
-- Real Linear workspaces, real Linear connector tool names and scopes.
-- Real Figma files: library inspection against a live file, and `apply-to-figma` edits with visual verification.
-- Behavior on other models, other Claude Code versions, or interactive (non-headless) sessions beyond plugin loading.
-- Output quality across many tickets. These are single runs, not a benchmark.
-- Any time saving. None is claimed.
+Tested by the author, Basma Gh, with live Linear and Figma connections in her own workspaces (October 2026): Linear
+intake and Figma work both worked. Those sessions used private data, so they are not reproduced here; the recorded
+runs above use fictional data only.
 
-Status: **tested preview on fictional data, not production-ready.**
+## Not measured
+
+- Behavior on other models and other Claude Code versions.
+- Output quality across a large set of tickets. The recorded runs are single runs, not a benchmark.
+- Time saved. None is claimed.
+
+Status: **public release, tested with live connections and recorded fictional runs.**

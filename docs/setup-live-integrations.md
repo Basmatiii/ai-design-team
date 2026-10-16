@@ -77,10 +77,10 @@ claude plugin marketplace add Basmatiii/ai-design-team
 claude plugin install design-team@basma-ai-tools
 ```
 
-## Before a public release
+## Before publishing a fork or a new version
 
 1. Run the validator, both plugin validations and the headless test; fix every warning.
 2. Run the mock-connector test and keep the guard result.
-3. Test against a real, non-sensitive Linear workspace and a test Figma file.
+3. Test with live Linear and Figma connections on non-sensitive data.
 4. Keep the MIT notice with every copy (`LICENSE`).
 5. Confirm rights to everything published. No client artifacts, tickets, links or credentials.
