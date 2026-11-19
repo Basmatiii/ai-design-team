@@ -1,4 +1,7 @@
-# Sample run: SAMPLE-104 final handoff
+# Sample run: SAMPLE-104 final handoff (v0.2.0)
+
+> This is a v0.2.0 run, kept as the recorded baseline: six agent runs, 444 seconds, QA `REVISION REQUIRED` twice.
+> v0.3.0 output has a different shape (`examples/expected-output-outline.md`); no v0.3.0 run has been recorded yet.
 
 Unedited output of validation run 7 (`docs/validation.md`): Claude Code 2.1.301, headless,
 `/design-team:design-ticket examples/sample-ticket.md`. Fictional ticket and product. Dashes normalized only.

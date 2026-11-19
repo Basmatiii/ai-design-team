@@ -1,27 +1,34 @@
 # Expected outcome: an outline, not a generated transcript
 
-What a correct run on `sample-ticket.md` should contain. A real run is recorded separately in `../../../docs/validation.md`.
+What a correct run on `sample-ticket.md` should contain in v0.3.0. Real runs are recorded in `docs/validation.md`
+of the repository once they exist.
 
-## Orchestrator (intake)
-- Evidence ledger for R1 to R7 with sources and status.
-- `No library evidence supplied`: component reuse stays unverified.
+## `/design-team:specs examples/sample-ticket.md`
 
-## UX analyst
-- AC-01 to AC-05 traced to R1 to R7.
-- State matrix: load, changed, saved, permission disabled, save failure and retry.
-- Accessibility: labeled selector, focus, live region for errors, keyboard access.
-- RTL and mixed-direction notes for `Every 2 days`.
+- Agents run: 1 (`ux-analyst`). No orchestrator hop, no designer, no QA.
+- `.design-team/sample-ticket/brief.md`: R1 to R7 and AC-01 to AC-05 copied verbatim, `Figma: none linked`, and the
+  ticket's contradiction noted under gaps (the Role line says notifications are enabled; R6 covers members without
+  permission).
+- `.design-team/sample-ticket/specs.md`: user goal and business goal, assumptions labeled as such, a requirement
+  challenge for the R6 contradiction, numbered flow, states (load, changed, saved, permission disabled, save failure
+  and retry), accessibility, AC-01 to AC-05 kept with their ids and any additions labeled `proposed`.
+- Component and contrast statements marked `not inspected`: the ticket supplies no Figma file.
+- Scorecard: a specs self-check out of 100 computed by `scripts/score.sh`, at most three improvements, the open
+  questions. `Linear: read-only, unchanged. Figma: unchanged.`
 
-## Figma designer
-- Frame and state plan; no invented frame IDs or component instances.
-- Selector proposal marked `proposal / unverified` pending library inspection.
-- Last line: `Figma modification status: NOT APPLIED, design proposal only.`
+## `/design-team:audit <link to a frame>`
 
-## Design QA
-- Written criteria marked `SPECIFIED (not visually verified)`.
-- Component reuse and contrast marked `BLOCKED (missing evidence)`.
-- A manual verification checklist that separates a design spec from a design file.
+- Agents run: 1 (`ux-analyst`). Only the linked frames are read.
+- `audit.md`: each frame marked inspected or not inspected, findings with node id, severity, recommended change and
+  rationale, at most 12.
+- Scorecard rates the audit (evidence, scope, actionability, severity). Nothing is scored if the scope could not be read.
 
-## Orchestrator (handoff)
-- Stage record showing which agent ran each stage.
-- `Changes made: None, proposal only`, human decisions, next safe action.
+## `/design-team:design <ticket> <Figma file and target>`
+
+- Turn 1: `approach.md` (what and where, frames, component reuse table with names returned by the library search,
+  decisions needed) and the line `Reply approve to apply this to Figma`. No Figma write has happened.
+- After `approve`: frames built by `figma-designer`, `build.md` listing node ids, links and screenshots taken. The
+  frames and links are reported before QA.
+- `design-qa` once: `qa.md` and `scores.txt`, ratings with evidence, `na` for anything it could not inspect.
+- At most one correction pass and one recheck. Scorecard with `Correction pass used: yes or no`.
+- Without a Figma file: `STATUS: BLOCKED`, naming the missing file and target. Nothing is invented.

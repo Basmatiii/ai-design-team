@@ -1,7 +1,7 @@
 {
   "name": "design-team",
-  "version": "0.2.0",
-  "description": "Review-first product design workflow: an orchestrator, a UX analyst, a Figma designer and an independent design QA agent, ending in a human decision",
+  "version": "0.3.0",
+  "description": "Specs, UX audits and real Figma design from a ticket: an orchestrator, a UX analyst, a Figma designer and an independent design QA agent, with a quality rubric and a human approval before any Figma edit",
   "author": {
     "name": "Basma Gh",
     "email": "hey@basma.design",

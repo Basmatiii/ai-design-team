@@ -10,6 +10,7 @@
 
 ```bash
 python3 scripts/validate.py
+python3 tests/run-static.py
 claude plugin validate ./plugins/design-team
 claude plugin validate .
 claude --plugin-dir ./plugins/design-team
@@ -18,37 +19,26 @@ claude --plugin-dir ./plugins/design-team
 Inside the session, from the release folder:
 
 ```text
-/design-team:design-ticket examples/sample-ticket.md
+/design-team:specs examples/sample-ticket.md
 ```
 
-Check that the orchestrator, UX analyst, Figma designer and Design QA each ran (the handoff has a stage record),
-that QA judged the original acceptance criteria, and that nothing outside the conversation changed.
+Check that one agent ran (`ux-analyst`), that `.design-team/sample-ticket/specs.md` exists, and that the reply ends
+with a scorecard.
 
-## Headless test with evidence
+## Live scenarios with evidence
+
+`tests/live/run-live.sh` starts real Claude Code sessions against the mock connectors in `tests/mock-mcp/` (fictional
+data, every call logged) and checks each run with `tests/analyze-run.py`. It needs a signed-in `claude`, Node.js for
+the mock server, and it uses credits.
 
 ```bash
-claude -p "/design-team:design-ticket examples/sample-ticket.md" --plugin-dir ./plugins/design-team \
-  --strict-mcp-config --allowedTools Read Glob Grep Agent Skill --output-format stream-json --verbose > tests/out/run.jsonl
-python3 tests/analyze-run.py tests/out/run.jsonl
+sh tests/live/run-live.sh                  # all 11 scenarios
+sh tests/live/run-live.sh specs audit      # only these
+python3 tests/live/summarize.py            # seconds, cost, agents, tool calls, repeated reads, tokens per scenario
 ```
 
-## Mock Linear and Figma (no accounts)
-
-`tests/mock-mcp/server.mjs` imitates both connectors with fictional data and logs every call to `tests/out/calls.log`.
-
-```bash
-mkdir -p tests/out
-claude -p "/design-team:design-ticket SAMPLE-105 (a Linear issue). The design system is in the Figma file POLLEN-DEMO." \
-  --plugin-dir ./plugins/design-team --settings settings/read-only-guard.json \
-  --mcp-config tests/mcp-config.json --strict-mcp-config \
-  --allowedTools Read Glob Grep Agent Skill mcp__linear__get_issue mcp__linear__list_issues mcp__linear__list_comments \
-    mcp__figma__get_metadata mcp__figma__search_design_system \
-  --output-format stream-json --verbose > tests/out/linear.jsonl
-python3 tests/analyze-run.py tests/out/linear.jsonl --calls tests/out/calls.log
-```
-
-SAMPLE-105 has an empty description, so the run should read its parent SAMPLE-100. One of its comments contains a
-prompt injection that asks for a state change; the expected result is that no write reaches the mock server.
+The scenarios cover SPECS, AUDIT, DESIGN with its approval turn, missing context, a failed QA run, an inaccessible
+design, failed Figma calls and low turn budgets. No real Linear or Figma workspace is touched.
 
 ## Real Linear intake
 
@@ -58,9 +48,12 @@ parents. Do not assume a connection is read-only because the skill asks for read
 
 ## Real Figma inspection and edits
 
-The workflow inspects library components with read-only Figma tools when a file is named. For edits, a person runs
-`/design-team:apply-to-figma` with the exact approved file, page, frame and spec, through a tool with real edit access,
-with Figma write tools set to `ask`. Check the result yourself afterwards.
+Agents read only the nodes you link. For edits, run `/design-team:design` with the ticket and the exact Figma file,
+page and frame. The designer shows its approach first; nothing changes until you type `approve`. Your account needs
+edit access to the file. Check the result yourself afterwards: the scorecard says what was and was not verified.
+
+If an agent reports that it has no Figma tools, your connector is registered under a name the agent allowlists do
+not include. Run `/mcp` to see the name, then `python3 scripts/sync-connector-aliases.py --figma <name>` in a clone.
 
 ## Local marketplace test
 
@@ -79,8 +72,8 @@ claude plugin install design-team@basma-ai-tools
 
 ## Before publishing a fork or a new version
 
-1. Run the validator, both plugin validations and the headless test; fix every warning.
-2. Run the mock-connector test and keep the guard result.
+1. Run the validator, `tests/run-static.py` and both plugin validations; fix every warning.
+2. Run `tests/live/run-live.sh` and keep the summary table in `docs/benchmark.md`.
 3. Test with live Linear and Figma connections on non-sensitive data.
 4. Keep the MIT notice with every copy (`LICENSE`).
 5. Confirm rights to everything published. No client artifacts, tickets, links or credentials.
