@@ -1,0 +1,62 @@
+{
+  "description": "The AI Design Team: keeps Linear read-only, requires a typed approval before Figma edits, keeps design-team agents inside their lane, caps handoffs and writes a run ledger. Scoped to sessions that run a /design-team workflow.",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          { "type": "command", "command": "sh", "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/guard.sh", "prompt"], "timeout": 10 }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "^mcp__.*[Ll]inear.*__(?!(get|list|search|extract)_).+",
+        "hooks": [
+          { "type": "command", "command": "sh", "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/guard.sh", "linear-write"], "timeout": 10, "onFailure": "block" }
+        ]
+      },
+      {
+        "matcher": "^mcp__.*[Ff]igma.*__(?!(get_|list_|search_|whoami$|download_assets$)).+",
+        "hooks": [
+          { "type": "command", "command": "sh", "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/guard.sh", "figma-write"], "timeout": 10, "onFailure": "block" }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|NotebookEdit|Skill|Bash",
+        "hooks": [
+          { "type": "command", "command": "sh", "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/guard.sh", "agent-scope"], "timeout": 10 }
+        ]
+      },
+      {
+        "matcher": "Agent|Task|SendMessage",
+        "hooks": [
+          { "type": "command", "command": "sh", "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/guard.sh", "dispatch"], "timeout": 10 }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "^mcp__.*([Ff]igma|[Ll]inear).*__.+",
+        "hooks": [
+          { "type": "command", "command": "sh", "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/guard.sh", "ledger-ok"], "timeout": 5 }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "^mcp__.*([Ff]igma|[Ll]inear).*__.+",
+        "hooks": [
+          { "type": "command", "command": "sh", "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/guard.sh", "ledger-fail"], "timeout": 5 }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "^design-team:.+",
+        "hooks": [
+          { "type": "command", "command": "sh", "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/guard.sh", "ledger-stop"], "timeout": 5 }
+        ]
+      }
+    ]
+  }
+}

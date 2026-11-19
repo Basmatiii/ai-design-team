@@ -9,3 +9,6 @@ node_modules/
 # private names that must never ship (one regex per line); read by scripts/validate.py
 .release-denylist
 tests/out/
+
+# workflow artifacts and the run ledger written while testing in this repository
+/.design-team/

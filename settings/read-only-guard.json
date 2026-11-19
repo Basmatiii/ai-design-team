@@ -1,5 +1,5 @@
 {
-  "$comment": "The AI Design Team read-only guard. Copy the permissions block into your project's .claude/settings.json. Deny rules are enforced by Claude Code, not by prompts. Patterns match Linear and Figma servers whatever you named them (for example linear, Linear, claude_ai_Linear). Check your real tool names with /mcp and add any write tool these patterns miss.",
+  "$comment": "The AI Design Team, second permission layer. The plugin's own hooks already keep Linear read-only and require a typed approval before Figma edits in design-team sessions. Copy this permissions block into your project's .claude/settings.json to add Claude Code's own rules on top: Linear writes denied in every session of the project, Figma edits always confirmed by you. Patterns match the servers whatever you named them. Check your real tool names with /mcp.",
   "permissions": {
     "deny": [
       "mcp__*inear*__create_*",
@@ -9,13 +9,15 @@
       "mcp__*inear*__archive_*",
       "mcp__*inear*__remove_*",
       "mcp__*inear*__assign_*",
-      "mcp__*igma*__use_figma",
       "mcp__*igma*__create_*",
       "mcp__*igma*__upload_*",
       "mcp__*igma*__generate_*",
-      "mcp__*igma*__send_*",
-      "mcp__*igma*__add_*",
-      "mcp__*igma*__update_*"
+      "mcp__*igma*__send_*"
+    ],
+    "ask": [
+      "mcp__*igma*__use_figma",
+      "mcp__*igma*__update_*",
+      "mcp__*igma*__add_*"
     ]
   }
 }
